@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <title>bin2dec convertor</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card card-body my-5">
+        <h4 class="text-center">
+          to && from bin || dec || octal ||hexad convertor
+        </h4>
+        <form>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="from">From</label>
+                <select class="custom-select" id="fromSelect">
+                  <option disabled value="100" selected>Choose...</option>
+                  <option value="1">Binary</option>
+                  <option value="10">Decimal</option>
+                  <option value="8">Octal</option>
+                  <option value="16">HexaDecimal</option>
+                </select>
+                <div class="invalid-feedback mt-0 pt-0">
+                  Please choose a number type.
+                </div>
+
+                <input
+                  id="fromInput"
+                  type="text"
+                  class="form-control mt-1"
+                  placeholder="Enter number here"
+                />
+                <div class="invalid-feedback mt-0 pt-0">
+                  Please enter a number.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="from">To</label>
+                <select class="custom-select" id="toSelect">
+                  <option disabled value="100" selected>Choose...</option>
+                  <option value="1">Binary</option>
+                  <option value="10">Decimal</option>
+                  <option value="8">Octal</option>
+                  <option value="16">HexaDecimal</option>
+                </select>
+                <div class="invalid-feedback mt-0 pt-0">
+                  Please choose a number type.
+                </div>
+                <input
+                  id="toResult"
+                  type="text"
+                  class="form-control mt-1"
+                  placeholder="Results appear here"
+                  disabled
+                />
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-success" type="submit" id="convert">
+            Convert
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
