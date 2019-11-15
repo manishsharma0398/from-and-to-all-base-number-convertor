@@ -242,46 +242,51 @@ function removeErrors() {
 
 function forHex(alteredArray) {
   alteredArray.forEach((arr, i) => {
-    if (arr == "a") {
-      alteredArray.splice(i, 1, "10");
-    }
-    if (arr == "10") {
-      alteredArray.splice(i, 1, "a");
-    }
+    switch (arr) {
+      case "a":
+        alteredArray.splice(i, 1, "10");
+        break;
+      case "10":
+        alteredArray.splice(i, 1, "a");
+        break;
 
-    if (arr == "b") {
-      alteredArray.splice(i, 1, "11");
-    }
-    if (arr == "11") {
-      alteredArray.splice(i, 1, "b");
-    }
+      case "b":
+        alteredArray.splice(i, 1, "11");
+        break;
+      case "11":
+        alteredArray.splice(i, 1, "b");
+        break;
 
-    if (arr == "c") {
-      alteredArray.splice(i, 1, "12");
-    }
-    if (arr == "12") {
-      alteredArray.splice(i, 1, "c");
-    }
+      case "c":
+        alteredArray.splice(i, 1, "12");
+        break;
+      case "12":
+        alteredArray.splice(i, 1, "c");
+        break;
 
-    if (arr == "d") {
-      alteredArray.splice(i, 1, "13");
-    }
-    if (arr == "13") {
-      alteredArray.splice(i, 1, "d");
-    }
+      case "d":
+        alteredArray.splice(i, 1, "13");
+        break;
+      case "13":
+        alteredArray.splice(i, 1, "d");
+        break;
 
-    if (arr == "e") {
-      alteredArray.splice(i, 1, "14");
-    }
-    if (arr == "14") {
-      alteredArray.splice(i, 1, "e");
-    }
+      case "e":
+        alteredArray.splice(i, 1, "14");
+        break;
+      case "14":
+        alteredArray.splice(i, 1, "e");
+        break;
 
-    if (arr == "f") {
-      alteredArray.splice(i, 1, "15");
-    }
-    if (arr == "15") {
-      alteredArray.splice(i, 1, "f");
+      case "f":
+        alteredArray.splice(i, 1, "15");
+        break;
+      case "15":
+        alteredArray.splice(i, 1, "f");
+        break;
+
+      default:
+        break;
     }
   });
 }
