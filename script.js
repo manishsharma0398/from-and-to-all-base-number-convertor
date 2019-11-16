@@ -1,76 +1,112 @@
-document.querySelector("form").addEventListener("submit", convert);
-
 const fromInputValue = document.querySelector("#fromInput");
 const fromSelect = document.querySelector("#fromSelect");
 const toSelect = document.querySelector("#toSelect");
+const form = document.querySelector("form");
 
-function convert(e) {
+const convert = e => {
   e.preventDefault();
+  console.log(e);
 
   removeErrors();
+  let result,
+    fromDataType = fromSelect.value,
+    toDataType = toSelect.value;
 
-  if (fromSelect.value == 1 && toSelect.value == 10) {
-    let result = binaryToDecimalConvert(fromInputValue.value);
-    printValue(result);
-  }
+  switch (fromDataType) {
+    case "binary":
+      switch (toDataType) {
+        case "decimal":
+          result = binaryToDecimalConvert(fromInputValue.value);
+          printValue(result);
+          break;
 
-  if (fromSelect.value == 1 && toSelect.value == 8) {
-    let result = binaryToOctalConvert(fromInputValue.value);
-    printValue(result);
-  }
+        case "octal":
+          result = binaryToOctalConvert(fromInputValue.value);
+          printValue(result);
+          break;
 
-  if (fromSelect.value == 1 && toSelect.value == 16) {
-    let result = binaryToHexadConvert(fromInputValue.value);
-    printValue(result);
-  }
+        case "hexaDecimal":
+          result = binaryToHexadConvert(fromInputValue.value);
+          printValue(result);
+          break;
 
-  if (fromSelect.value == 10 && toSelect.value == 1) {
-    let result = decimalToBinaryConvert(fromInputValue.value);
-    printValue(result);
-  }
+        default:
+          printValue(fromInputValue.value);
+          break;
+      }
+      break;
 
-  if (fromSelect.value == 8 && toSelect.value == 1) {
-    let result = octalToBinaryConvert(fromInputValue.value);
-    printValue(result);
-  }
+    case "decimal":
+      switch (toDataType) {
+        case "binary":
+          result = decimalToBinaryConvert(fromInputValue.value);
+          printValue(result);
+          break;
 
-  if (fromSelect.value == 16 && toSelect.value == 1) {
-    let result = hexadToBinaryConvert(fromInputValue.value);
-    printValue(result);
-  }
+        case "octal":
+          result = decimalToOctalConvert(fromInputValue.value);
+          printValue(result);
+          break;
 
-  if (fromSelect.value == 10 && toSelect.value == 8) {
-    let result = decimalToOctalConvert(fromInputValue.value);
-    printValue(result);
-  }
+        case "hexaDecimal":
+          result = decimalToHexadConvert(fromInputValue.value);
+          printValue(result);
+          break;
 
-  if (fromSelect.value == 10 && toSelect.value == 16) {
-    let result = decimalToHexadConvert(fromInputValue.value);
-    printValue(result);
-  }
+        default:
+          printValue(fromInputValue.value);
+          break;
+      }
+      break;
 
-  if (fromSelect.value == 8 && toSelect.value == 10) {
-    let result = octalToDecimalConvert(fromInputValue.value);
-    printValue(result);
-  }
+    case "octal":
+      switch (toDataType) {
+        case "binary":
+          result = octalToBinaryConvert(fromInputValue.value);
+          printValue(result);
+          break;
 
-  if (fromSelect.value == 16 && toSelect.value == 10) {
-    let result = hexadToDecimalConvert(fromInputValue.value);
-    printValue(result);
-  }
+        case "decimal":
+          result = octalToDecimalConvert(fromInputValue.value);
+          printValue(result);
+          break;
 
-  if (fromSelect.value == 16 && toSelect.value == 8) {
-    let result = hexadToOctalConvert(fromInputValue.value);
-    printValue(result);
-  }
+        case "hexaDecimal":
+          result = octalToHexadConvert(fromInputValue.value);
+          printValue(result);
+          break;
 
-  if (fromSelect.value == 8 && toSelect.value == 16) {
-    let result = octalToHexadConvert(fromInputValue.value);
-    printValue(result);
-  }
+        default:
+          printValue(fromInputValue.value);
+          break;
+      }
+      break;
 
-  if (fromSelect.value === toSelect.value) {
-    printValue(fromInputValue.value);
+    case "hexaDecimal":
+      switch (toDataType) {
+        case "binary":
+          result = hexadToBinaryConvert(fromInputValue.value);
+          printValue(result);
+          break;
+
+        case "decimal":
+          result = hexadToDecimalConvert(fromInputValue.value);
+          printValue(result);
+          break;
+
+        case "octal":
+          result = hexadToOctalConvert(fromInputValue.value);
+          printValue(result);
+          break;
+
+        default:
+          printValue(fromInputValue.value);
+          break;
+      }
+      break;
+
+    default:
+      break;
   }
 
   if (
@@ -80,17 +116,9 @@ function convert(e) {
   ) {
     fromInputValue.classList.add("is-invalid");
   }
+};
 
-  if (fromSelect.value == 100) {
-    fromSelect.classList.add("is-invalid");
-  }
-
-  if (toSelect.value == 100) {
-    toSelect.classList.add("is-invalid");
-  }
-}
-
-function toDecimal(num, base) {
+toDecimal = (num, base) => {
   let newNum;
 
   if (base != 16) {
@@ -111,14 +139,9 @@ function toDecimal(num, base) {
   }
 
   return final;
-}
+};
 
-function binaryToDecimalConvert(binaryNo) {
-  let result = toDecimal(binaryNo, 2);
-  return +result;
-}
-
-function fromDecimal(decimalNo, base) {
+fromDecimal = (decimalNo, base) => {
   let remainder = [];
   let decimal = +decimalNo;
   let convertedNumber;
@@ -146,24 +169,29 @@ function fromDecimal(decimalNo, base) {
     convertedNumber = convertedNumber.join("");
     return convertedNumber;
   }
-}
+};
 
-function decimalToBinaryConvert(decimalNo) {
+binaryToDecimalConvert = binaryNo => {
+  let result = toDecimal(binaryNo, 2);
+  return +result;
+};
+
+decimalToBinaryConvert = decimalNo => {
   let result = fromDecimal(decimalNo, 2);
   return result;
-}
+};
 
-function binaryToOctalConvert(binaryNo) {
+binaryToOctalConvert = binaryNo => {
   const octal = parseInt(binaryNo, 2).toString(8);
   return octal;
-}
+};
 
-function binaryToHexadConvert(binaryNo) {
+binaryToHexadConvert = binaryNo => {
   const hex = parseInt(binaryNo, 2).toString(16);
   return hex;
-}
+};
 
-function octalToBinaryConvert(octalNo) {
+octalToBinaryConvert = octalNo => {
   let octal = octalNo.split("");
   let m = [];
   for (let i = 0; i < octal.length; i++) {
@@ -177,9 +205,9 @@ function octalToBinaryConvert(octalNo) {
     }
   }
   return m.join("");
-}
+};
 
-function hexadToBinaryConvert(hexadNo) {
+hexadToBinaryConvert = hexadNo => {
   let hex = hexadNo.split("");
   forHex(hex);
 
@@ -197,50 +225,43 @@ function hexadToBinaryConvert(hexadNo) {
     }
   }
   return m.join("");
-}
+};
 
-function decimalToOctalConvert(decimalNo) {
+decimalToOctalConvert = decimalNo => {
   let result = fromDecimal(decimalNo, 8);
   return +result;
-}
+};
 
-function decimalToHexadConvert(decimalNo) {
+decimalToHexadConvert = decimalNo => {
   let result = fromDecimal(decimalNo, 16);
   return result;
-}
+};
 
-function octalToDecimalConvert(octalNo) {
+octalToDecimalConvert = octalNo => {
   let result = toDecimal(octalNo, 8);
   return +result;
-}
+};
 
-function hexadToDecimalConvert(hexadNo) {
+hexadToDecimalConvert = hexadNo => {
   let result = toDecimal(hexadNo, 16);
   return result;
-}
+};
 
-function hexadToOctalConvert(hexadNo) {
+hexadToOctalConvert = hexadNo => {
   const octal = parseInt(hexadNo, 16).toString(8);
   return octal;
-}
+};
 
-function octalToHexadConvert(octalNo) {
+octalToHexadConvert = octalNo => {
   const octal = parseInt(octalNo, 8).toString(16);
   return octal;
-}
+};
 
-function printValue(convertedValue) {
+printValue = convertedValue => {
   document.querySelector("#toResult").value = convertedValue;
-}
+};
 
-function removeErrors() {
-  document.querySelector("#toResult").value = "";
-  fromSelect.classList.remove("is-invalid");
-  fromInputValue.classList.remove("is-invalid");
-  toSelect.classList.remove("is-invalid");
-}
-
-function forHex(alteredArray) {
+const forHex = alteredArray => {
   alteredArray.forEach((arr, i) => {
     switch (arr) {
       case "a":
@@ -289,4 +310,13 @@ function forHex(alteredArray) {
         break;
     }
   });
-}
+};
+
+form.addEventListener("submit", convert);
+
+removeErrors = () => {
+  document.querySelector("#toResult").value = "";
+  fromSelect.classList.remove("is-invalid");
+  fromInputValue.classList.remove("is-invalid");
+  toSelect.classList.remove("is-invalid");
+};
