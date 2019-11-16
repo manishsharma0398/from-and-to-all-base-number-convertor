@@ -5,7 +5,6 @@ const form = document.querySelector("form");
 
 const convert = e => {
   e.preventDefault();
-  console.log(e);
 
   removeErrors();
   let result,
